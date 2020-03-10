@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head></head>
-<body>
-<div class="flex-center position-ref full-height">
+@extends('layouts.app')
+
+@section('content')
     <div class="container">
-        <h1>Post {{ $id }} / {{ $name }} / {{ $password }}</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1>Post {{ $id }} / {{ $name }} / {{ $password }}</h1>
+                    </div>
+
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-</body>
-</html>
+@endsection
