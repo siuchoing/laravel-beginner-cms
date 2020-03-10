@@ -9,6 +9,9 @@ class Post extends Model
 {
     use SoftDeletes;
 
+    // Defining a specific table name for CRUD actions
+    protected $table = 'posts';
+
     protected $dates = ['deleted_at'];
 
     // For create
