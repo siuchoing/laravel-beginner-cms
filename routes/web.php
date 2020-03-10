@@ -117,3 +117,23 @@ Route::get('/findmore', function(){
 
    return "First title: ". $post1->title."<br>Second Title: ".$post2->title;
 });
+
+Route::get('/basicinsert', function(){
+   $post = new Post;
+   $post->title = 'New Eloquent title insert';
+   $post->content = 'Wow eloquent is really cool, look at this content';
+   $post->save();
+});
+
+Route::get('/basicinsert2', function(){
+   $post = Post::find(2);
+   $post->title = 'New Eloquent title insert 2';
+   $post->content = 'Wow eloquent is really cool, look at this content 2';
+   $post->save();
+});
+
+Route::get('/create', function(){
+   Post::create([
+       'title'=>'the create method 2',
+       'content'=>'WOW I\'am learning a lot with Edwin Diaz 2']);
+});
