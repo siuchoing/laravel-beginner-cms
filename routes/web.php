@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Post;
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -198,3 +200,14 @@ Route::get('/forcedelete', function(){
     Post::onlyTrashed()->where('is_admin', 0)->forceDelete();
 });
 
+
+
+/*
+|--------------------------------------------------------------------------
+| ELOQUENT Relationships
+|--------------------------------------------------------------------------
+*/
+// One to One relationship
+Route::get('/user/{id}/post', function($id){
+   return User::find($id)->post->content;
+});
