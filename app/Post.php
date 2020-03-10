@@ -12,6 +12,9 @@ class Post extends Model
     // Defining a specific table name for CRUD actions
     protected $table = 'posts';
 
+    // Defining Primary Keys for CRUD actions
+    //protected $primaryKey = 'post_id';
+
     protected $dates = ['deleted_at'];
 
     // For create
