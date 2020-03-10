@@ -42,3 +42,36 @@ Route::resource('posts', 'PostsController');
 Route::get('/contact', 'PostsController@contact');
 Route::get('post/{id}/{name}/{password}', 'PostsController@show_post');
 
+
+
+/*
+|--------------------------------------------------------------------------
+| DATABASE Raw SQL Queries
+|--------------------------------------------------------------------------
+*/
+Route::get('rawSQL/insert', function(){
+   DB::insert('insert into posts(title, content) values(?, ?)', [
+       'Laravel is awesome with Edwin',
+       'Laravel is the best thing that has happened to PHP, PERIOD'
+   ]);
+});
+
+Route::get('rawSQL/read', function() {
+   $results = DB::select('select * from posts where id = ?', [1]);
+   //return var_dump($results);
+   foreach($results as $post){
+      return $post->title;
+   }
+});
+
+Route::get('rawSQL/update', function(){
+   $updated = DB::update('update posts set title = "Update title" where id = ?', [1]);
+   return $updated;
+});
+
+Route::get('rawSQL/delete', function(){
+   $deleted = DB::delete('delete from posts where id = ?', [1]);
+   return $deleted;
+});
+
+
