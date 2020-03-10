@@ -211,3 +211,20 @@ Route::get('/forcedelete', function(){
 Route::get('/user/{id}/post', function($id){
    return User::find($id)->post->content;
 });
+
+Route::get('/mypost/{id}/user', function($id){
+    return Post::find($id)->user->name;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+

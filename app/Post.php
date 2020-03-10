@@ -22,4 +22,9 @@ class Post extends Model
         'title',
         'content'
     ];
+
+    // One post is posted by one user
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }
