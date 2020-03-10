@@ -143,3 +143,58 @@ Route::get('/update', function(){
        'title'=>'NEW PHP TITLE',
        'content'=>'I love my instructor Edwin']);
 });
+
+Route::get('/delete', function(){
+   $post = Post::find(4);
+   $post->delete();
+});
+
+Route::get('/delete2', function(){
+   Post::destroy([4,5]);
+   //   Post::where('is_admin', 0)->delete();
+});
+
+Route::get('/softdelete', function(){
+   Post::find(10)->delete();
+});
+
+Route::get('/readsoftdelete', function(){
+//   $post = Post::find(1);
+//
+//   return $post;
+
+    // Current record
+   $post = Post::withTrashed()->where('is_admin', 0)->get();
+
+   return $post;
+
+      $post = Post::onlyTrashed()->where('is_admin', 0 )->get();
+
+   return $post;
+
+});
+
+Route::get('/readsoftdelete/1', function(){
+    // Read All records with softdelete record
+    $post = Post::withTrashed()->where('is_admin', 0)->get();
+
+    return $post;
+});
+
+Route::get('/readsoftdelete/2', function(){
+    // Read softdelete record only, where deleted_at !== null
+    $post = Post::onlyTrashed()->where('is_admin', 0 )->get();
+
+    return $post;
+});
+
+Route::get('/restore', function(){
+   // Restore all record, including the softdelete records
+   Post::withTrashed()->where('is_admin', 0)->restore();
+});
+
+Route::get('/forcedelete', function(){
+    // Permanently delete softdelete records
+    Post::onlyTrashed()->where('is_admin', 0)->forceDelete();
+});
+
