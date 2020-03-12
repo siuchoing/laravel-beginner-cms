@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Post;
 use App\User;
+use App\Country;
 
 /*
 |--------------------------------------------------------------------------
@@ -251,6 +252,14 @@ Route::get('user/pivot', function(){
         //return $role->pivot;                      // {"user_id":1,"role_id":1,"created_at":"2020-03-04T12:05:00.000000Z"}
         return $role->pivot->created_at;            // "2020-03-04T12:05:00.000000Z"
     }
+});
+
+// Get posts in Country.php through hasManyThrough relation between Post and Country
+Route::get('/user/country', function(){
+  $country =  Country::find(4);                     // where country_id = 4
+   foreach($country->posts as $post) {
+       return $post->title;
+   }
 });
 
 
