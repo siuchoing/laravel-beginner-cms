@@ -46,4 +46,10 @@ class User extends Authenticatable
     public function posts() {
         return $this->hasMany('App\Post');
     }
+
+    // One user is authorized by many roles
+    public function roles() {
+        return $this->belongsToMany('App\Role');
+    }
+
 }
