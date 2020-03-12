@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     // One user is authorized by many roles
     public function roles() {
-        return $this->belongsToMany('App\Role');
+        return $this->belongsToMany('App\Role')->withPivot('created_at');
     }
 
 }

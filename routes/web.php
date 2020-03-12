@@ -243,6 +243,15 @@ Route::get('/user/{id}/role/name', function($id){
 
 
 
+// Accessing the intermediate table / pivot
+Route::get('user/pivot', function(){
+    // pivot refer to the relation between roles and users table {"user_id":1,"role_id":1}
+    $user = User::find(1);
+    foreach($user->roles as $role){
+        //return $role->pivot;                      // {"user_id":1,"role_id":1,"created_at":"2020-03-04T12:05:00.000000Z"}
+        return $role->pivot->created_at;            // "2020-03-04T12:05:00.000000Z"
+    }
+});
 
 
 
