@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Post;
 use App\User;
 use App\Country;
+use App\Photo;
 
 /*
 |--------------------------------------------------------------------------
@@ -276,5 +277,11 @@ Route::get('post/{id}/photos', function($id){
     foreach($post->photos as $photo) {
         echo $photo->path . "<br>";
     }
+});
+
+// id=1, display user data; id=2, display post data
+Route::get('photo/{id}/post', function($id){
+    $photo =  Photo::findOrFail($id);
+    return $photo->imageable;
 });
 
