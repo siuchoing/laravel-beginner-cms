@@ -285,3 +285,20 @@ Route::get('photo/{id}/post', function($id){
     return $photo->imageable;
 });
 
+
+
+// Polymorphic Many to Many
+/*****************************************************
+ * tag_id   * taggable_id   * post_id
+ * 2        * 1             * 1
+ * 3        * 2             * 2
+ * 5        * 3             * 3
+ */
+Route::get('mypost/tag/{id}', function($id){
+    //Works for Post
+    $post = Post::find($id);
+    dd($post->tags[0]);
+    foreach($post->tags as $tag){
+        echo $tag->name . "<br>";
+    }
+});

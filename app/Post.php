@@ -33,4 +33,10 @@ class Post extends Model
     public function photos() {
         return $this->morphMany('App\Photo', 'imageable');
     }
+
+    // One post can mark down to many tags
+    public function tags() {
+        return $this->morphToMany('App\Tag', 'taggable');
+    }
+
 }
