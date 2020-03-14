@@ -30,11 +30,17 @@ class Post extends Model
 
     # Polymorphic relation [Many To Many]
     // One post can share many photos
+    /**
+     * Get all of the post's photos.
+     */
     public function photos() {
         return $this->morphMany('App\Photo', 'imageable');
     }
 
     // One post can mark down to many tags
+    /**
+     * Get all of the tags for the post.
+     */
     public function tags() {
         return $this->morphToMany('App\Tag', 'taggable');
     }

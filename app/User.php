@@ -48,6 +48,11 @@ class User extends Authenticatable
     }
 
     // One user is authorized by many roles
+
+    # Retrieving Intermediate Table Columns
+    /**
+     * The roles that belong to the user.
+     */
     public function roles() {
         return $this->belongsToMany('App\Role')->withPivot('created_at');
 
@@ -58,6 +63,9 @@ class User extends Authenticatable
 
     # Polymorphic relation [Many To Many]
     // One post can share many photos
+    /**
+     * Get all of the user's photos
+     */
     public function photos() {
         return $this->morphMany('App\Photo', 'imageable');
     }
