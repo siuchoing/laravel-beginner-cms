@@ -5,6 +5,7 @@ use App\Post;
 use App\User;
 use App\Country;
 use App\Photo;
+use App\Tag;
 
 /*
 |--------------------------------------------------------------------------
@@ -300,5 +301,13 @@ Route::get('mypost/tag/{id}', function($id){
     dd($post->tags[0]);
     foreach($post->tags as $tag){
         echo $tag->name . "<br>";
+    }
+});
+
+Route::get('/tag/post/{id}', function($id){         // id can try 2, 3, 5
+    $tag = Tag::find($id);
+    dd($tag->posts[0]);
+    foreach($tag->posts as $post){
+        return  $post->title;
     }
 });
