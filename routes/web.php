@@ -311,3 +311,16 @@ Route::get('/tag/post/{id}', function($id){         // id can try 2, 3, 5
         return  $post->title;
     }
 });
+
+/*****************************************************
+ * tag_id   * taggable_id   * video_id
+ * 1        * 1             * 1
+ * 4        * 2             * 2
+ * 6        * 3             * 3
+ */
+Route::get('/tag/video/{id}', function($id){         // id can try 2, 3, 5
+    $tag = Tag::find($id);
+    foreach($tag->videos as $video){
+        return  $video->title;
+    }
+});
