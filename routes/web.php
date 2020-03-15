@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\User;
+use App\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +37,42 @@ Route::get('admin/posts/example', array('as'=>'admin.home' ,function(){
     return "this url is ". $url;
 
 }));
+
+/***********************************
+ * Many to Many Relation for CRUD
+ */
+
+// Create Administrator Role
+Route::get('/create', function(){
+    $user = User::find(1);
+    $role = new Role(['name'=>'Administrator']);
+    $user->roles()->save($role);
+});
+
+// Read User's Role Name
+Route::get('/read', function(){
+    $user = User::findOrFail(1);
+    foreach($user->roles as $role){
+        echo $role->name;
+    }
+});
+
+// Update User's Role Name
+Route::get('/update', function(){
+    $user = User::findOrFail(1);
+    if($user->has('roles')){
+        foreach($user->roles as $role){
+            if($role->name == 'Administrator'){
+                $role->name = "subscriber";
+                $role->save();
+            }
+        }
+    }
+});
+
+Route::get('/delete', function(){
+    $user = User::findOrFail(5);
+    foreach($user->roles as $role){
+        $role->whereId(5)->delete();
+    }
+});
