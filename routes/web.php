@@ -76,3 +76,14 @@ Route::get('/delete', function(){
         $role->whereId(5)->delete();
     }
 });
+
+
+
+/****************************
+ * Attaching, detaching and syncing
+ */
+// Attaching: To create a record in role_user table
+Route::get('/attach', function(){
+    $user = User::findOrFail(1);
+    $user->roles()->attach(4);
+});
