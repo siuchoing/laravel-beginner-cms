@@ -93,3 +93,12 @@ Route::get('/detach', function(){
     $user = User::findOrFail(1);
     $user->roles()->detach();
 });
+
+// syncing: To force delete and all User1's records without role_id = [6,7],
+//          and build new record(s) if the table have no record with role_id = [6,7],
+//          then finally will have two records in table, one with role_id = 6, and one with role_id = 7
+
+Route::get('/sync', function(){
+    $user = User::findOrFail(1);
+    $user->roles()->sync([6,7]);
+});
