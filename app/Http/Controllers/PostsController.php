@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -28,7 +30,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -39,15 +41,29 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        # Method 1
+//        $post = $request->title;
+//        $post = $request->content;
+//        $post = Post::create([
+//                    'title' => $request->title,
+//                    'content' => $request->content,
+//                    'user_id' => Auth::id()
+//                ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+//        # Method 2
+        $input = $request->all();
+        $input['user_id'] = Auth::user()->id;
+        Post::create($input);
+
+//        # Method 3
+//        $post = new Post;
+//        $post->title = $request->title;
+//        $post->content = $request->content;
+//        $post->user_id = Auth::id();
+//        $post->save();
+
+}
     public function show($id)
     {
         //

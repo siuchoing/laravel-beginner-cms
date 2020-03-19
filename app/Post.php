@@ -20,7 +20,8 @@ class Post extends Model
     // For create
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'user_id'
     ];
 
     // One post is posted by one user
