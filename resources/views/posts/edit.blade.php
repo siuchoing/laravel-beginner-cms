@@ -1,7 +1,14 @@
 @extends('layouts.app_card')
 
 @section('card-header')
-    <h1>Edit Post</h1>
+    <div class="d-flex justify-content-between col">
+        <h3> Edit Post </h3>
+        <form method="post" action="/posts/{{ $post->id }}">
+            {{csrf_field()}}
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-primary" value="DELETE">Delete</button>
+        </form>
+    </div>
 @stop
 
 @section('card-body')
@@ -21,5 +28,6 @@
             <button type="submit" class="btn btn-primary" style="float: right">Submit</button>
         </form>
     </div>
+
 @stop
 
