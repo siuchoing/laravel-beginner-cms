@@ -1,7 +1,12 @@
 @extends('layouts.app_card')
 
 @section('card-header')
-    <h2>Post</h2>
+    <div class="d-flex justify-content-between">
+        <h2>Post</h2>
+        <a href="{{route('posts.create')}}">
+            {!! Form::submit('Create Post', ['class'=>'btn btn-primary']) !!}
+        </a>
+    </div>
 @stop
 
 @section('card-body')
