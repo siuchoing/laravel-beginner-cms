@@ -346,5 +346,16 @@ Route::group(['middleware'=>'web'], function(){
     echo Carbon::now()->yesterday();                                      // 2020-03-19 00:00:00
     echo '<br>';
   });
+
+  Route::get('/getname', function(){
+    $user = User::find(1);
+    echo $user->name;
+  });
+
+  Route::get('/setname', function(){
+    $user = User::find(1);
+    $user->name = "william";
+    $user->save();
+  });
 });
 
