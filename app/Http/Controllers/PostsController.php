@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
@@ -41,16 +42,8 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
-        /************************
-         * Validation
-         */
-        $this->validate($request, [
-            'title'=> 'required',
-            'content'=> 'required'
-        ]);
-
         # Method 1
 //        $post = $request->title;
 //        $post = $request->content;
