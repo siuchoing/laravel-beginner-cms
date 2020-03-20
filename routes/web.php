@@ -6,7 +6,7 @@ use App\User;
 use App\Country;
 use App\Photo;
 use App\Tag;
-
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -324,3 +324,27 @@ Route::get('/tag/video/{id}', function($id){         // id can try 2, 3, 5
         return  $video->title;
     }
 });
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Crud Application
+|--------------------------------------------------------------------------
+|
+*/
+Route::group(['middleware'=>'web'], function(){
+  Route::get('/dates', function(){
+    $date = new DateTime('+1 week');
+    echo $date->format('m-d-Y');                                   // 03-27-2020
+      echo '<br>';
+    echo Carbon::now()->addDays(100)->diffForHumans();              // 3 months from now
+    echo '<br>';
+    echo Carbon::now()->subMonths(1)->diffForHumans();              // 1 month ago
+    echo '<br>';
+    echo Carbon::now()->yesterday();                                      // 2020-03-19 00:00:00
+    echo '<br>';
+  });
+});
+
