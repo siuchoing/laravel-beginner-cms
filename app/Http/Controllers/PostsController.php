@@ -59,12 +59,13 @@ class PostsController extends Controller
 //                    'content' => $request->content,
 //                    'user_id' => Auth::id()
 //                ]);
-
+//        return redirect('/posts');
 
 //        # Method 2
         $input = $request->all();
         $input['user_id'] = Auth::user()->id;
         Post::create($input);
+        return redirect('/posts');
 
 //        # Method 3
 //        $post = new Post;
@@ -72,7 +73,7 @@ class PostsController extends Controller
 //        $post->content = $request->content;
 //        $post->user_id = Auth::id();
 //        $post->save();
-
+//        return redirect('/posts');
 }
 
 /**
