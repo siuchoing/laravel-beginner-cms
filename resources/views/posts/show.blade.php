@@ -1,7 +1,12 @@
 @extends('layouts.app_card')
 
 @section('card-header')
-    <h1>{{ $post->title }}</h1>
+    <div class="d-flex justify-content-between">
+        <h3> {{ $post->title }} </h3>
+        <a href="{{route('posts.edit', $post->id)}}">
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </a>
+    </div>
 @stop
 
 @section('card-body')
