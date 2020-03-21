@@ -361,10 +361,12 @@ Route::group(['middleware'=>'web'], function(){
     echo $user->email;
   });
 
+  // Using Mutator to manipulate the DB column value, and Eloquent model's internal $attributes property
   Route::get('/setname', function(){
     $user = User::find(1);
     $user->name = "william";
     $user->save();
+    return redirect('/getname');
   });
 });
 

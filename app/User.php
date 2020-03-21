@@ -84,4 +84,12 @@ class User extends Authenticatable
     public function getEmailAttribute($value){
         return strtoupper($value); //全部變成大寫
     }
+
+    # Mutator can receive and manipulate attribute value on the Eloquent model's internal $attributes property
+    /**
+     * Set the user's first name.
+     */
+    public function setNameAttribute($value){
+        $this->attributes['name'] = strtoupper($value);
+    }
 }
