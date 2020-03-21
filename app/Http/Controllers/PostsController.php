@@ -130,4 +130,16 @@ class PostsController extends Controller
         //return view('post')->with('id', $id);
         return view('post', compact('id', 'name', 'password'));
     }
+
+    public function file_data(Request $request) {
+        return  view('posts.file');
+    }
+
+    public function retrieving_file_data(Request $request) {
+        $file = $request->file('file'); //取得檔案，會以暫存檔(temp)呈現
+        echo "<br>";
+        echo "File name: ".$file->getClientOriginalName(); //取得原始名稱
+        echo "<br>";
+        echo "File size: ".$file->getSize(); //取得檔案大小
+    }
 }
