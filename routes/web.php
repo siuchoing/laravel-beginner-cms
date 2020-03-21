@@ -73,6 +73,15 @@ Route::get('/admin/user/roles', ['middleware'=> ['role', 'auth', 'web'], functio
     return "Middleware role";
 }]);
 
+// Check Role
+Route::get('/isAdmin', function () {
+    $user = Auth::user();
+    if($user->isAdmin()){
+        echo "this user is a administrator";
+    }
+});
+
+
 
 /*
 |--------------------------------------------------------------------------

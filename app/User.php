@@ -47,6 +47,19 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
 
+    // For Role Middleware
+    public function role() {
+        return $this->belongsTo('App\Role');
+    }
+
+    // For isAdmin Middleware
+    public function isAdmin(){
+        if($this->role->name == 'administrator'){
+            return true;
+        }
+        return false;
+    }
+
     // One user is authorized by many roles
 
     # Retrieving Intermediate Table Columns
