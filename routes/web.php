@@ -80,6 +80,7 @@ Route::get('/admin', 'AdminController@index');
  * Session
  */
 Route::get('/local_session', 'HomeController@showLocalSession');
+Route::get('/global_session', 'HomeController@showGlobalSession');
 /*
 |--------------------------------------------------------------------------
 | DATABASE Raw SQL Queries

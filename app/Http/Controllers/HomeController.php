@@ -36,4 +36,18 @@ class HomeController extends Controller
         return $request->session()->get('edwin');
     }
 
+    public function showGlobalSession(Request $request) {
+        // Global session
+        session(['peter'=>'student']);  //最常用
+
+        // Clean a session
+        $request->session()->forget('edwin');
+
+        // Clean all sessions
+        $request->session()->flush();
+
+        // Display session
+        return session('peter');
+        //return $request->session()->all();
+    }
 }
