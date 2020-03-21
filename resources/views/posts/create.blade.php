@@ -6,7 +6,8 @@
 
 @section('card-body')
     <div class="container">
-        <form method="post" action="/posts">
+            <form method="post" action="/posts" accept-charset="UTF-8" enctype="multipart/form-data">
+
             {{csrf_field()}}
             <div class="form-group">
                 <label for="title">Title</label>
@@ -20,6 +21,10 @@
                     </button>
                 </div>
             @endif
+            <div class="form-group">
+                <label for="photo">Photo</label>
+                <input name="file" type="file" class="form-control-file" id="photo">
+            </div>
             <div class="form-group">
                 <label for="content">Content</label>
                 <input type="text" class="form-control" name="content" placeholder="Enter content">
