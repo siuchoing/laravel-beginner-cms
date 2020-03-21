@@ -347,15 +347,26 @@ Route::group(['middleware'=>'web'], function(){
     echo '<br>';
   });
 
+  // Using Accessor in User Model to get name column value in DB by getNameAttribute(),
+  // and computed first character of name capitalized
   Route::get('/getname', function(){
     $user = User::find(1);
     echo $user->name;
   });
 
+  // Using Accessor in User Model to get email column value in DB by getEmailAttribute,
+  // and computed name in uppercase string
+  Route::get('/getemail', function(){
+    $user = User::find(1);
+    echo $user->email;
+  });
+
+  // Using Mutator to manipulate the DB column value, and Eloquent model's internal $attributes property
   Route::get('/setname', function(){
     $user = User::find(1);
     $user->name = "william";
     $user->save();
+    return redirect('/getname');
   });
 });
 
