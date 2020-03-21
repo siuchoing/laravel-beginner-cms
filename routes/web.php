@@ -347,6 +347,8 @@ Route::group(['middleware'=>'web'], function(){
     echo '<br>';
   });
 
+  // Using Accessor in User Model to get name column value in DB by getNameAttribute(),
+  // and computed first character of name capitalized
   Route::get('/getname', function(){
     $user = User::find(1);
     echo $user->name;

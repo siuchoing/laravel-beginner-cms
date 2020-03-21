@@ -69,4 +69,12 @@ class User extends Authenticatable
     public function photos() {
         return $this->morphMany('App\Photo', 'imageable');
     }
+
+    # Accessor can get DB column value, and manipulate data by using get the name of the DB column
+    /**
+     * Get the user's name.
+     */
+    public function getNameAttribute($value){
+        return ucfirst($value); //第一個字大寫
+    }
 }
