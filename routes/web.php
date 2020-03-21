@@ -354,6 +354,13 @@ Route::group(['middleware'=>'web'], function(){
     echo $user->name;
   });
 
+  // Using Accessor in User Model to get email column value in DB by getEmailAttribute,
+  // and computed name in uppercase string
+  Route::get('/getemail', function(){
+    $user = User::find(1);
+    echo $user->email;
+  });
+
   Route::get('/setname', function(){
     $user = User::find(1);
     $user->name = "william";

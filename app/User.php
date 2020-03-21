@@ -77,4 +77,11 @@ class User extends Authenticatable
     public function getNameAttribute($value){
         return ucfirst($value); //第一個字大寫
     }
+
+    /**
+     * Get the user's email.
+     */
+    public function getEmailAttribute($value){
+        return strtoupper($value); //全部變成大寫
+    }
 }
