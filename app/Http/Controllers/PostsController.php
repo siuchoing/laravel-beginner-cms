@@ -61,7 +61,7 @@ class PostsController extends Controller
             $name = $file->getClientOriginalName();
             // create images folder inside public folder if it doesn't exist, and move file there
             $file->move('images', $name);
-            $input['path'] = $name;
+            $input['path'] = str_replace(' ', '_', $name);
         }
         $input['user_id'] = Auth::user()->id;
         Post::create($input);
