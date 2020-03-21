@@ -68,6 +68,12 @@ Route::get('post/{id}/{name}/{password}', 'PostsController@show_post');
 Route::get('post/file/create', 'PostsController@file_data');
 Route::post('post/file/create/1', 'PostsController@retrieving_file_data');
 
+// Role
+Route::get('/admin/user/roles', ['middleware'=> ['role', 'auth', 'web'], function() {
+    return "Middleware role";
+}]);
+
+Route::get('/admin', 'AdminController@index');
 
 
 /*
