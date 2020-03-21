@@ -28,6 +28,30 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+/*************************
+ * Auth
+ */
+Route::get('/auth_check', function () {
+    if(Auth::check()) {
+        return "The user is login in";
+    }
+});
+
+Route::get('/admin_login', function () {
+    $email = 'admin@gmail.com';
+    $password = '123123';
+    // directly login and redirect to default login page
+    if(Auth::attempt(['email'=>$email, 'password'=>$password])) {
+        return redirect()->intended('/admin');
+    }
+});
+
+Route::get('/user/login', function () {
+    Auth::logout();
+    return redirect('/');
+});
+
+
 // Naming Routes                                           [php artisan routes:list]
 Route::get('admin/posts/example', array('as'=>'admin.home' ,function(){
 
