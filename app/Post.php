@@ -9,6 +9,9 @@ class Post extends Model
 {
     use SoftDeletes;
 
+    // set variable for image directory, you can set it to $path, or other name
+    public $directory = '/images/';
+
     // Defining a specific table name for CRUD actions
     protected $table = 'posts';
 
@@ -49,6 +52,12 @@ class Post extends Model
 
     public static function scopeSortLatest($query){
         return $query->orderBy('id', 'asc')->get();
+    }
+
+    public function getPathAttribute($value){
+        if($value) {
+            return $this->directory . $value;
+        }
     }
 
 }
