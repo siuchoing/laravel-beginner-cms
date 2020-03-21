@@ -28,11 +28,6 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-// Passing Parameters
-Route::get('/post/{id}/{name}', function($id, $name){
-    return "This is post number ". $id . " " . $name;
-});
-
 // Naming Routes                                           [php artisan routes:list]
 Route::get('admin/posts/example', array('as'=>'admin.home' ,function(){
 
@@ -46,6 +41,8 @@ Route::get('/post/{id}', 'PostsController@index');
 Route::resource('posts', 'PostsController');
 Route::get('/contact', 'PostsController@contact');
 Route::get('post/{id}/{name}/{password}', 'PostsController@show_post');
+Route::get('post/file/create', 'PostsController@file_data');
+Route::post('post/file/create/1', 'PostsController@retrieving_file_data');
 
 
 
@@ -370,3 +367,24 @@ Route::group(['middleware'=>'web'], function(){
   });
 });
 
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| This route group applies the "web" middleware group to every route
+| it contains. The "web" middleware group is defined in your HTTP
+| kernel and includes session state, CSRF protection, and more.
+|
+*/
+
+//Route::group(['middleware' => ['web']], function () {
+//
+//
+//
+//
+//
+//});

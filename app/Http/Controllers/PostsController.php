@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,7 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
         # Method 1
 //        $post = $request->title;
@@ -51,12 +52,13 @@ class PostsController extends Controller
 //                    'content' => $request->content,
 //                    'user_id' => Auth::id()
 //                ]);
-
+//        return redirect('/posts');
 
 //        # Method 2
         $input = $request->all();
         $input['user_id'] = Auth::user()->id;
         Post::create($input);
+        return redirect('/posts');
 
 //        # Method 3
 //        $post = new Post;
@@ -64,7 +66,7 @@ class PostsController extends Controller
 //        $post->content = $request->content;
 //        $post->user_id = Auth::id();
 //        $post->save();
-
+//        return redirect('/posts');
 }
 
 /**
@@ -126,5 +128,17 @@ class PostsController extends Controller
     public function show_post($id, $name, $password) {
         //return view('post')->with('id', $id);
         return view('post', compact('id', 'name', 'password'));
+    }
+
+    public function file_data(Request $request) {
+        return  view('posts.file');
+    }
+
+    public function retrieving_file_data(Request $request) {
+        $file = $request->file('file'); //取得檔案，會以暫存檔(temp)呈現
+        echo "<br>";
+        echo "File name: ".$file->getClientOriginalName(); //取得原始名稱
+        echo "<br>";
+        echo "File size: ".$file->getSize(); //取得檔案大小
     }
 }
