@@ -83,6 +83,9 @@ Route::get('/local_session', 'HomeController@showLocalSession');
 Route::get('/global_session', 'HomeController@showGlobalSession');
 Route::get('/clean_session', 'HomeController@cleanSession');
 Route::get('/session/getFlashData', 'HomeController@getFlashData');
+Route::get('/session/keepFlashData', 'HomeController@keepFlashDataToNextRequest');
+
+
 /*
 |--------------------------------------------------------------------------
 | DATABASE Raw SQL Queries

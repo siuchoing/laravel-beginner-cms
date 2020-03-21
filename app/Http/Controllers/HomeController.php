@@ -70,4 +70,18 @@ class HomeController extends Controller
         $request->session()->flash('message', 'Post has been created');
         return $request->session()->get('message');
     }
+
+    // Session data stored until next http request, and then will be deleted.
+    public function keepFlashDataToNextRequest(Request $request) {
+        $request->session()->flash('message', 'Post has been created');
+
+        // keep storing all of the flash data for an additional request
+        $request->session()->reflash();
+
+        // keep storing specific flash data for an additional request
+        $request->session()->keep(['message']);
+
+        return $request->session()->all();
+    }
+
 }
