@@ -27,4 +27,13 @@ class HomeController extends Controller
         $user = Auth::user();
         return view('home', compact('user'));
     }
+
+    public function showLocalSession(Request $request) {
+        //return $request->session()->all();
+
+        // local session
+        $request->session()->put(['edwin'=>'master instructor']);
+        return $request->session()->get('edwin');
+    }
+
 }

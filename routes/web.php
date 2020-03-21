@@ -76,6 +76,10 @@ Route::get('/admin/user/roles', ['middleware'=> ['role', 'auth', 'web'], functio
 Route::get('/admin', 'AdminController@index');
 
 
+/**********************************************
+ * Session
+ */
+Route::get('/local_session', 'HomeController@showLocalSession');
 /*
 |--------------------------------------------------------------------------
 | DATABASE Raw SQL Queries
