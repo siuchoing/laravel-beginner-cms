@@ -81,6 +81,7 @@ Route::get('/admin', 'AdminController@index');
  */
 Route::get('/local_session', 'HomeController@showLocalSession');
 Route::get('/global_session', 'HomeController@showGlobalSession');
+Route::get('/clean_session', 'HomeController@cleanSession');
 /*
 |--------------------------------------------------------------------------
 | DATABASE Raw SQL Queries
