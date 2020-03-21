@@ -73,6 +73,7 @@ Route::get('/admin/user/roles', ['middleware'=> ['role', 'auth', 'web'], functio
     return "Middleware role";
 }]);
 
+Route::get('/admin', 'AdminController@index');
 
 
 /*
