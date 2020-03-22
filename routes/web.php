@@ -42,7 +42,9 @@ Route::get('/admin_login', function () {
     $password = '123123';
     // directly login and redirect to default login page
     if(Auth::attempt(['email'=>$email, 'password'=>$password])) {
-        return redirect()->intended('/admin');
+        return redirect()->intended('/admin/welcome');
+    } else {
+        return redirect('/');
     }
 });
 
@@ -78,7 +80,7 @@ Route::get('/admin/user/roles', ['middleware'=> ['role', 'auth', 'web'], functio
     return "Middleware role";
 }]);
 
-Route::get('/admin', 'AdminController@index');
+Route::get('/admin/welcome', 'AdminController@index');
 
 
 /**********************************************
