@@ -51,6 +51,11 @@ Route::get('/user/login', function () {
     return redirect('/');
 });
 
+/*************************
+ * Auth User
+ */
+Route::resource('admin/users', 'AdminUsersController');
+
 
 // Naming Routes                                           [php artisan routes:list]
 Route::get('admin/posts/example', array('as'=>'admin.home' ,function(){
