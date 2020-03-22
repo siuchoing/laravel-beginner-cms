@@ -57,6 +57,9 @@ Route::get('/user/login', function () {
  * Auth User
  */
 Route::resource('admin/users', 'AdminUsersController');
+Route::get('/admin', function(){
+    return view('admin.index');
+});
 
 
 // Naming Routes                                           [php artisan routes:list]
