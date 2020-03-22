@@ -31,7 +31,7 @@
 
 </head>
 
-<body id="admin-page">
+<body id="admin-page" style="padding: 0px;">
 
 <div id="wrapper">
 
