@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
+    protected $fillable = [
+        'path',
+    ];
+
     # Polymorphic relation [Many To Many]
     // One photos can be shared to many post
     /**
