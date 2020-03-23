@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsersRequest;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\Photo;
 use App\Country;
 
 
@@ -41,9 +43,43 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersRequest $request)
     {
-        return $request->all();
+        // Password
+        if(trim($request->password) == ''){
+            $input = $request->except('password');
+        } else{
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+        }
+
+        // photo_path
+        if($file = $request->file('photo_path')) {
+            // Get unique path name
+            $photoName = time() . $file->getClientOriginalName();
+            $pathName = str_replace(' ', '_', $photoName);
+
+            // Create user
+            $user = User::create([
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'password' => $input['password'],
+                'is_active' => $input['is_active'],
+                'country_id' => $input['country_id'],
+                'photo_path' => $pathName,
+                'role_id' => $input['role_id'],
+            ]);
+
+            // Move photo to public/images folder
+            $file->move('images', $pathName);
+
+            // Use Polymorphic Relation to create user's photo
+            $theUser = User::where('photo_path', $pathName)->first();
+            $photo = $theUser->photos()->create([
+                'path' => $pathName,
+            ]);
+        }
+        return redirect('/admin/users');
     }
 
     /**
