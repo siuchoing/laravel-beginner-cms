@@ -2,7 +2,7 @@
 @section('content')
     <h1>Create User</h1>
 
-    <form method="POST" action="/admin/users" accept-charset="UTF-8">
+    <form method="post" action="/admin/users" accept-charset="UTF-8" enctype="multipart/form-data">
 
         {{csrf_field()}}
 
@@ -32,6 +32,11 @@
                 <option value="1">Active</option>
                 <option value="0" selected="selected">No Active</option>
             </select>
+        </div>
+
+        <div class="form-group">
+            <label for="file">Photo</label>
+            <input name="file" type="file" class="form-control-file" id="file">
         </div>
 
         <div class="form-group">
