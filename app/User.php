@@ -16,7 +16,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','country_id'
+        'name',
+        'email',
+        'password',
+        'is_active',
+        'country_id',
+        'photo_path',
+        'role_id',
     ];
 
     /**
@@ -72,6 +78,10 @@ class User extends Authenticatable
         // To customize tables name and columns follow the format below
         // ### Remark: belongsToMany($model, $table, $foriegnPivotKey, $relatedPivotKey);
         // return $this->belongsToMany('App\Role', 'role_user', 'user_id', 'role_id');
+    }
+
+    public function photo(){
+        return $this->belongsTo('App\Photo');
     }
 
     # Polymorphic relation [Many To Many]
