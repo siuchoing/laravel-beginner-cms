@@ -74,6 +74,10 @@ class User extends Authenticatable
         // return $this->belongsToMany('App\Role', 'role_user', 'user_id', 'role_id');
     }
 
+    public function photo(){
+        return $this->belongsTo('App\Photo');
+    }
+
     # Polymorphic relation [Many To Many]
     // One post can share many photos
     /**
