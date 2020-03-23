@@ -53,4 +53,5 @@
             <input class="btn btn-primary" type="submit" value="Create User">
         </div>
     </form>
+    @include('includes.form_error')
 @stop
