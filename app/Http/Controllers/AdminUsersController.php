@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\Country;
 
 
 class AdminUsersController extends Controller
@@ -29,7 +30,9 @@ class AdminUsersController extends Controller
     {
         // Use pluck() instead of lists(), which is deprecated!
         $roles = Role::pluck('name', 'id')->all();
-        return view('admin.users.create', compact('roles'));
+        $countries = Country::pluck('name', 'id')->all();
+
+        return view('admin.users.create', compact('roles', 'countries'));
     }
 
     /**
