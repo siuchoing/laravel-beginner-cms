@@ -27,16 +27,16 @@
         </div>
 
         <div class="form-group">
-            <label for="status">Status:</label>
-            <select class="form-control" id="status" name="status">
+            <label for="is_active">Status:</label>
+            <select class="form-control" id="is_active" name="is_active">
                 <option value="1">Active</option>
                 <option value="0" selected="selected">No Active</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="file">Photo</label>
-            <input name="file" type="file" class="form-control-file" id="file">
+            <label for="photo_path">Photo</label>
+            <input name="photo_path" type="file" class="form-control-file" id="photo_path">
         </div>
 
         <div class="form-group">
